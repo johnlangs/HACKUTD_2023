@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start" : "run-p start-client start-server",
+    "start-server": "python3 ./django/manage.py runserver",
+    "start-client": "vite",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
@@ -15,7 +18,8 @@
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.16",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "npm-run-all": "^4.1.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
