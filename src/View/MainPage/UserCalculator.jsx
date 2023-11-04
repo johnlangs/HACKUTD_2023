@@ -1,5 +1,5 @@
 import React from 'react';
-import triangle from './userCalculator.css';
+import triangle from './UserCalculator.css';
 import { Fade, Paper, Card, Typography, Input, TextField, Grid } from '@mui/material';
 
 
