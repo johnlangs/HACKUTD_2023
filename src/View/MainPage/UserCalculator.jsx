@@ -1,4 +1,5 @@
 import React from 'react';
+import triangle from './userCalculator.css';
 import { Fade, Paper, Card, Typography, Input, TextField, Grid } from '@mui/material';
 
 
@@ -49,9 +50,16 @@ function UserCalculator() {
         </Grid>
       </Paper>
 
-      <>
-        
-      </>
+    <section class="triangle">
+
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+
+    </section>
     </>
 
   )

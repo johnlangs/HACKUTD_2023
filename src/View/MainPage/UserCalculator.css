@@ -1,0 +1,23 @@
+.triangle {
+  background: linear-gradient(to right, #ff8008, #ffc837);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--cut)),
+    50% 100%,
+    0 calc(100% - var(--cut))
+  );
+  /*Close the gap with the previous section*/
+  margin-top: calc(var(--cut) * -1);
+  /* Higher z-index value than next section */
+  z-index: 2;
+  position: relative;
+}
+
+section {
+  background-color: #404040;
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
