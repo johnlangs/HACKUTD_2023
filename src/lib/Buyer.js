@@ -19,12 +19,12 @@ export default class Buyer {
         }
 
         // LTV check
-        if ((this.loan_amount / (this.income / 12)) > 0.80) {
+        if ((this.loan_amount / (this.income)) > 0.80) {
             reasons.push('ltv')
         }
 
         // DTI check
-        if ((this.mortgage + this.debt) / (this.income / 12) > 0.36) {
+        if ((this.mortgage + this.debt) / (this.income) > 0.36) {
             reasons.push('dti');
         }
 

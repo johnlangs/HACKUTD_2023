@@ -1,40 +1,70 @@
-import React from 'react';
-import triangle from './UserCalculator.css';
-import { Fade, Paper, Card, Typography, Input, TextField, Grid } from '@mui/material';
+import React, { useState } from 'react';
+import Buyer from '../../lib/Buyer';
+import triangle from './UserCalculator.css'; 
+import { Fade, Paper, Card, Typography, Input, TextField, Grid, Button, Box } from '@mui/material';
 import zIndex from '@mui/material/styles/zIndex';
 
 
 function UserCalculator() {
+  const [buyer, setBuyer] = useState(new Buyer);
+  const [approved, setApproved] = useState(null);
+  let messagesEnd;
+
+  const checkStatus = () => {
+    console.log(buyer);
+    if (buyer.check().length === 0) {
+      setApproved(true);
+    } else {
+      setApproved(false);
+    }
+  }
 
   return (
     <>
-
       <section class="tilt" >
         <Paper elevation={0} sx={{ margin: '0 auto', maxWidth: '90%', padding: '2em', backgroundColor: "transparent" }}>
           <Typography variant='h1' sx={{ fontSize: '15vw' }}>
             Thinking of getting a loan?
           </Typography>
-          <Grid sx={{ textAlign: 'center', textAlign: 'justify', justifyContent: "flex-end" }}>
+          <Grid sx={{ textAlign: 'center', textAlign: 'justify', justifyContent: "flex-end", justifyItems:"flex-end" }}>
             <Typography variant='h2' sx={{ fontSize: '2.5vw' }}>See how likely you are to get approved for a home loan.</Typography>
             <Typography variant='h3' sx={{ fontSize: '4.5vw' }}>
               I make roughly &nbsp;
               <Input
+                onInput={(e) => {
+                  let newBuyer = buyer;
+                  newBuyer.income = Number(e.target.value);
+                  setBuyer(newBuyer); 
+                  console.log(buyer);
+                }}
+                inputProps={{ maxLength: 10 }}
+                sx={{
+                  fontSize: '4.5vw',
+                  maxWidth: '10ch',
+                }}
+              />
+              &nbsp;a month, and have&nbsp;
+              <Input
+                onInput={(e) => {
+                  let newBuyer = buyer;
+                  newBuyer.debt = Number(e.target.value);
+                  setBuyer(newBuyer); 
+                  console.log(buyer);
+                }}
                 inputProps={{ maxLength: 10 }}
                 sx={{
                   fontSize: '4.5vw',
                   maxWidth: '10ch'
                 }}
               />
-              &nbsp;a year, and have&nbsp;
+              &nbsp;in monthly debt. My FICO credit score is&nbsp;
               <Input
-                inputProps={{ maxLength: 10 }}
-                sx={{
-                  fontSize: '4.5vw',
-                  maxWidth: '10ch'
+                onInput={(e) => {
+                  let newBuyer = buyer;
+                  newBuyer.credit = Number(e.target.value);
+                  setBuyer(newBuyer); 
+                  console.log(buyer);
                 }}
-              />
-              &nbsp;in savings. My FICO credit score is&nbsp;
-              <Input
                 inputProps={{ maxLength: 3 }}
                 sx={{
                   fontSize: '4.5vw',
@@ -43,6 +73,12 @@ function UserCalculator() {
               />
               &nbsp;I expect to spend &nbsp;
               <Input
+                onInput={(e) => {
+                  let newBuyer = buyer;
+                  newBuyer.mortgage = Number(e.target.value);
+                  setBuyer(newBuyer); 
+                  console.log(buyer);
+                }}
                 inputProps={{ maxLength: 10 }}
                 sx={{
                   fontSize: '4.5vw',
@@ -51,6 +87,12 @@ function UserCalculator() {
               />
               &nbsp;a month on my mortgage payment, and I can put&nbsp;
               <Input
+                onInput={(e) => {
+                  let newBuyer = buyer;
+                  newBuyer.mortgage = Number(e.target.value);
+                  setBuyer(newBuyer); 
+                  console.log(buyer);
+                }}
                 sx={{
                   fontSize: '4.5vw',
                   maxWidth: '10ch'
@@ -58,14 +100,21 @@ function UserCalculator() {
               />
               &nbsp;as a down payment.
             </Typography>
+            <Box sx={{display: 'flex', justifyContent: 'flex-end'}}>
+              <Button style={{backgroundColor: '#049cdd', color: 'black'}} onClick={checkStatus}>
+                  <Typography variant='h3' sx={{ fontSize: '4.5vw' }}>CHECK</Typography>
+              </Button>
+            </Box>
             <Typography style={{ marginTop: "150px" }}></Typography>
-
           </Grid>
         </Paper>
       </section >
 
 
-      <section class="triangle">
+  <div style={{ float:"left", clear: "both" }}
+    ref={(el) => {messagesEnd = el; }}>
+  </div>
+  {approved === true && <section class="triangle">
   <Typography style={{ marginTop: "1550px" }}></Typography>
   <Grid container spacing={3} sx={{ margin: '0 auto', maxWidth: '90%', padding: '2em', backgroundColor: "transparent" }}>
     <Grid item xs={12}>
@@ -109,8 +158,8 @@ function UserCalculator() {
       </Typography>
     </Grid>
   </Grid>
-</section>
-<section class="triangle" style={{background:"red"}}>
+</section>}
+    {approved === false && <section class="triangle" style={{background:"red"}}>
   <Typography style={{ marginTop: "1550px" }}></Typography>
   <Grid container spacing={3} sx={{ margin: '0 auto', maxWidth: '90%', padding: '2em', backgroundColor: "transparent" }}>
     <Grid item xs={12}>
@@ -154,7 +203,7 @@ function UserCalculator() {
       </Typography>
     </Grid>
   </Grid>
-</section>
+    </section>}
     </>
   )
 }
