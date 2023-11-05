@@ -1,7 +1,7 @@
 {
   "rewrites":  [
     {"source": "/(.*)", "destination": "/"},
-    {"source": "/Admin/(.*)", "destination": "/Admin"}
+    {"source": "/Admin/(.*)", "destination": "/Admin.jsx"}
   ]
 }
 
