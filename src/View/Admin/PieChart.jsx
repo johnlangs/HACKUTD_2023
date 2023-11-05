@@ -3,14 +3,14 @@ import { Chart } from "react-google-charts";
 
 export const data = [    
     ['Reason', 'Amount'],
-    ['CreditScore', 4028], 
-    ['ltv', 4748], 
-    ['dti', 7457], 
-    ['fedti', 5586],
+    ['Credit Score', 4028], 
+    ['LTV', 4748], 
+    ['DTI', 7457], 
+    ['FEDTI', 5586],
 ];
 
 export const options = {
-  title: "My Daily Activities",
+  title: "Rejection Reasons",
 };
 
 export function PieChart() {
