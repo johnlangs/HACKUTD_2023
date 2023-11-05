@@ -1,12 +1,57 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.onTop {
+  z-index: 1000;
+}
+
+:root {
+  /* Height of the cut*/
+  --cut: 200px;
+}
+
+body {
+  min-height: 100vh;
+}
+
+#parent {
+  z-index: 1000;
+}
+
+section {
+  background-color: #404040;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section h1 {
+
+}
+
+
+
+.tilt {
+  background: linear-gradient(to right, rgb(0, 155, 228), rgb(108, 181, 22));
+  /* Clip the bottom part of this section*/
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - var(--cut)));
+  /* Higher z-index value than next section */
+  z-index: 3;
+  position: relative;
+}
+
 .triangle {
-  background: linear-gradient(to right, #ff8008, #ffc837);
+  background: rgb(50, 195, 50);
   clip-path: polygon(
     0 0,
     100% 0,
-    100% calc(100% - var(--cut)),
+    100% calc(100% - var(--cut))),
     50% 100%,
-    0 calc(100% - var(--cut))
-  );
+    0 calc(100% - var(--cut));
+  
   /*Close the gap with the previous section*/
   margin-top: calc(var(--cut) * -1);
   /* Higher z-index value than next section */
@@ -14,10 +59,23 @@
   position: relative;
 }
 
-section {
-  background-color: #404040;
-  min-height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.polygon {
+  background: linear-gradient(to right, #ff00cc, #333399);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    80% calc(100% - var(--cut)),
+    20% calc(100% - var(--cut)),
+    0 100%
+  );
+  /*Close the gap with the previous section*/
+  margin-top: calc(var(--cut) * -1);
+  z-index: 1;
+  position: relative;
+}
+
+.last {
+  /*Close the gap with the previous section*/
+  margin-top: calc(var(--cut) * -1);
 }
