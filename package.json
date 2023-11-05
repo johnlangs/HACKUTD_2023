@@ -1,10 +1,11 @@
 {
   "name": "hackutd-2023",
+  "proxy": "http://localhost:8000",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start" : "run-p start-client start-server",
+    "start": "run-p start-client start-server",
     "start-server": "python3 ./django/manage.py runserver",
     "start-client": "vite",
     "dev": "vite",
@@ -14,12 +15,15 @@
     "host": "vite preview --host"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.16",
+    "emailjs": "^4.0.3",
+    "npm-run-all": "^4.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "npm-run-all": "^4.1.5"
+    "react-google-charts": "^4.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

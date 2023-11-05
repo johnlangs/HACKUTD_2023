@@ -29,7 +29,7 @@ for i in range(len(batch)):
         is_approved = False
     
     # Check LTV
-    batch.loc[i, 'ltv'] = batch.loc[i, 'DownPayment'] / batch.loc[i, 'LoanAmount']
+    batch.loc[i, 'ltv'] = (batch.loc[i, 'LoanAmount'] - batch.loc[i, 'DownPayment']) / batch.loc[i, 'LoanAmount']
     if (batch.loc[i, 'ltv'] >= 0.80):
         reject_res['ltv'] += 1
         is_approved = False
@@ -84,4 +84,6 @@ sns.barplot(reject_res)
 palette_color = sns.color_palette('dark')
 plt.pie([reject_res[key] for key in reject_res], labels=[key for key in reject_res], colors=palette_color, 
          autopct='%.0f%%') 
+# %%
+reject_res
 # %%

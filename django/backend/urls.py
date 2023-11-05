@@ -25,4 +25,5 @@ router.register(r'buyers', views.BuyerView, 'buyers')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/get_rejections/', views.get_rejections, name='get_rejections'),
 ]
