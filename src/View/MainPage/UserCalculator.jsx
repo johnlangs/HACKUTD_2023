@@ -44,6 +44,7 @@ function UserCalculator() {
                   maxWidth: '10ch'}}
           /> 
            &nbsp;as a down payment.
+
           </Typography>
         </Grid>
       </Paper>
