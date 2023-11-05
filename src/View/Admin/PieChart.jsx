@@ -10,6 +10,7 @@ export const data = [
 ];
 
 export const options = {
+  backgroundColor: '#E4E4E4',
   title: "Rejection Reasons",
 };
 

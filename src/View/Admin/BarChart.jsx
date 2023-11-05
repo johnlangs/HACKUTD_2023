@@ -3,8 +3,8 @@ import { Chart } from "react-google-charts";
 
 export const data = [
   [
-    "Element",
-    "Density",
+    "Status",
+    "Amount",
     { role: "style" },
     {
       sourceColumn: 0,
@@ -19,6 +19,7 @@ export const data = [
 
 export const options = {
   title: "Loan Approval/Rejection Results",
+  backgroundColor: '#E4E4E4',
   width: 600,
   height: 400,
   bar: { groupWidth: "95%" },

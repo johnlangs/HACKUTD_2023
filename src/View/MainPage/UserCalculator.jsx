@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Buyer from '../../lib/Buyer';
 import triangle from './UserCalculator.css'; 
 import { Fade, Paper, Card, Typography, Input, TextField, Grid, Button, Box } from '@mui/material';
@@ -8,16 +8,31 @@ import zIndex from '@mui/material/styles/zIndex';
 function UserCalculator() {
   const [buyer, setBuyer] = useState(new Buyer);
   const [approved, setApproved] = useState(null);
-  let messagesEnd;
+  let statusPage = null;
 
   const checkStatus = () => {
     console.log(buyer);
+    console.log(buyer.check());
     if (buyer.check().length === 0) {
       setApproved(true);
     } else {
       setApproved(false);
     }
   }
+
+  // const scrollToStatus = React.useCallback(() => {
+  //   statusPage.scrollIntoView({ behavior: "smooth" });
+  // }, [approved]);
+
+  const scrollToStatus = () => {
+    if (approved != null) {
+      statusPage.scrollIntoView({ behavior: "smooth" });  
+    }
+  };
+
+  useEffect(() => {
+    scrollToStatus();
+  }, [approved]);
 
   return (
     <>
@@ -89,7 +104,7 @@ function UserCalculator() {
               <Input
                 onInput={(e) => {
                   let newBuyer = buyer;
-                  newBuyer.mortgage = Number(e.target.value);
+                  newBuyer.down_payment = Number(e.target.value);
                   setBuyer(newBuyer); 
                   console.log(buyer);
                 }}
@@ -99,6 +114,20 @@ function UserCalculator() {
                 }}
               />
               &nbsp;as a down payment.
+              &nbsp;I want a &nbsp;
+              <Input
+                onInput={(e) => {
+                  let newBuyer = buyer;
+                  newBuyer.loan_amount = Number(e.target.value);
+                  setBuyer(newBuyer); 
+                  console.log(buyer);
+                }}
+                sx={{
+                  fontSize: '4.5vw',
+                  maxWidth: '10ch'
+                }}
+              />
+              &nbsp;loan.
             </Typography>
             <Box sx={{display: 'flex', justifyContent: 'flex-end'}}>
               <Button style={{backgroundColor: '#049cdd', color: 'black'}} onClick={checkStatus}>
@@ -112,9 +141,10 @@ function UserCalculator() {
 
 
   <div style={{ float:"left", clear: "both" }}
-    ref={(el) => {messagesEnd = el; }}>
+    ref={(el) => {statusPage = el; }}>
   </div>
-  {approved === true && <section class="triangle">
+  {approved === true && 
+  <section class="triangle">
   <Typography style={{ marginTop: "1550px" }}></Typography>
   <Grid container spacing={3} sx={{ margin: '0 auto', maxWidth: '90%', padding: '2em', backgroundColor: "transparent" }}>
     <Grid item xs={12}>
@@ -159,7 +189,7 @@ function UserCalculator() {
     </Grid>
   </Grid>
 </section>}
-    {approved === false && <section class="triangle" style={{background:"red"}}>
+  {approved === false && <section class="triangle" style={{background:"red"}}>
   <Typography style={{ marginTop: "1550px" }}></Typography>
   <Grid container spacing={3} sx={{ margin: '0 auto', maxWidth: '90%', padding: '2em', backgroundColor: "transparent" }}>
     <Grid item xs={12}>

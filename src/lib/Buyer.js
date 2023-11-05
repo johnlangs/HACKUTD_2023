@@ -1,16 +1,36 @@
 export default class Buyer {
     constructor () {
-        this.debt = -1.0;
-        this.income = -1.0;
-        this.mortgage = -1.0;
-        this.down_payment = -1.0;
-        this.loan_amount = -1.0;
+        this.debt = 0.0;
+        this.income = 0.0;
+        this.mortgage = 0.0;
+        this.down_payment = 0.0;
+        this.loan_amount = 0.0;
         this.credit = 0;
         this.savings = 0.0;
     }
     
 
     check () {
+        if (this.income <= 0.0) {
+            return ['income']
+        }
+
+        if (this.down_payment < 0) {
+            return ['error']
+        }
+
+        if (this.mortgage < 0) {
+            return ['error']
+        }
+
+        if (this.loan_amount < 0) {
+            return ['error']
+        }
+
+        if (this.debt < 0) {
+            return ['error']
+        }
+
         let reasons = [];
 
         // credit check
@@ -19,7 +39,7 @@ export default class Buyer {
         }
 
         // LTV check
-        if ((this.loan_amount / (this.income)) > 0.80) {
+        if (((this.loan_amount - this.down_payment) / (this.loan_amount)) > 0.80) {
             reasons.push('ltv')
         }
 
